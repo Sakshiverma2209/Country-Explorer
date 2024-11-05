@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Details</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  <header>
+    <h1>Country Details</h1>
+    <button onclick="goBack()">Go Back</button>
+  </header>
+
+  <main id="country-details">
+    <!-- Country details will be dynamically generated here -->
+  </main>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function displayCountryDetails() {
+      const params = new URLSearchParams(window.location.search);
+      const countryDetails = `
+        <h2>${params.get('name')}</h2>
+        <img src="${params.get('flag')}" alt="Flag of ${params.get('name')}" width="150">
+        <p><strong>Capital:</strong> ${params.get('capital')}</p>
+        <p><strong>Region:</strong> ${params.get('region')}</p>
+        <p><strong>Population:</strong> ${params.get('population')}</p>
+        <p><strong>Area:</strong> ${params.get('area')} km²</p>
+        <p><strong>Languages:</strong> ${params.get('languages')}</p>
+      `;
+      document.getElementById('country-details').innerHTML = countryDetails;
+    }
+
+    displayCountryDetails();
+  </script>
+</body>
+</html>
